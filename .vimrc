@@ -23,6 +23,8 @@ Plug 'junegunn/goyo.vim' " mode distraction free
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'preservim/tagbar'
+
 " Linters, fixers + basic autocompletion and code navigation
 " Simpler than coc.nvim
 Plug 'dense-analysis/ale'
@@ -110,6 +112,8 @@ nnoremap <A-S-Right> :bnext<CR>
 nnoremap <ESC>OC :bnext<CR>
 
 
+nnoremap <C-t> :TagbarToggle<CR>
+
 " Folding
 set foldmethod=indent
 set foldlevel=99
@@ -144,5 +148,4 @@ highlight DiffAdd ctermbg=34
 highlight DiffDelete ctermbg=248
 highlight DiffChange ctermbg=33
 highlight DiffText ctermbg=21
-
 
