@@ -12,7 +12,10 @@ Plug 'andreasvc/vim-256noir'
 Plug 'Alligator/accent.vim' " let g:accent_colour = 'green'
 Plug 'doums/darcula'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'arcticicestudio/nord-vim'
+Plug 'nordtheme/vim'
+Plug 'sainnhe/edge' " https://github.com/sainnhe/edge
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
 
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/goyo.vim' " mode distraction free
@@ -24,17 +27,35 @@ Plug 'junegunn/fzf.vim'
 " Simpler than coc.nvim
 Plug 'dense-analysis/ale'
 
-
 call plug#end()
+
+
 
 :syntax on
 
+set background=dark
 " color skittles_berry
 " colorscheme skull
 " colorscheme accent
 " colorscheme orbital
-colorscheme onedark
-colorscheme petitapetitio
+" colorscheme onedark
+" colorscheme petitapetitio
+
+if $TERM_PROGRAM == "Apple_Terminal"
+  " Terminal.app only supports 256 colours as of 2021
+  set notermguicolors
+endif
+
+function! s:setMainTheme()
+  colorscheme skull
+  " colorscheme edge
+  " let g:edge_style = 'aura'
+  " set background=dark
+endfunction
+
+autocmd FileType python colorscheme petitapetitio
+autocmd FileType * if &ft!="python" | call s:setMainTheme() | endif
+" call s:setMainTheme()
 
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
@@ -55,9 +76,11 @@ let g:ale_fixers = { "python": ["ruff", "ruff_format"] }
 
 " Presentation
 set nowrap                        " I'l scroll horizontally
-set colorcolumn=131               " highlight where lines start to get long
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
+" Navigate 10 lines below / above
+nnoremap J 10+
+nnoremap K 10-
 
 " Rechercher par nom de fichier
 nnoremap <C-p> :Files<CR>
@@ -73,11 +96,19 @@ nnoremap <C-b> :Buffers<CR>
 
 " Jump backward / jumb forward
 nnoremap <A-Left> <C-o>
-nnoremap <A-Right> <C-i>
+nnoremap <ESC>b <C-o>
 
-" Move to previous file (buffer) / next file
+nnoremap <A-Right> <C-i>
+nnoremap <ESC>f <C-i>
+
+" Move to previous file (on linux and on mac)
 nnoremap <A-S-Left> :bprevious<CR>
+nnoremap <ESC>OD :bprevious<CR>
+
+" Move to next file (on linux and on mac)
 nnoremap <A-S-Right> :bnext<CR>
+nnoremap <ESC>OC :bnext<CR>
+
 
 " Folding
 set foldmethod=indent
