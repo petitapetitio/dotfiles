@@ -84,17 +84,20 @@ set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 nnoremap J 10+
 nnoremap K 10-
 
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-L>
+
 " Rechercher par nom de fichier
-nnoremap <C-p> :Files<CR>
+nnoremap <C-P> :Files<CR>
 
 " Rechercher dans le texte
-nnoremap <C-l> :Rg<CR>
+nnoremap <C-F> :Rg<CR>
 
 " Rechercher parmi les fichiers modifiés
-nnoremap <C-m> :GFiles?<CR>
+nnoremap <C-G> :GFiles?<CR>
 
 " Rechercher pami les derniers fichiers ouverts
-nnoremap <C-b> :Buffers<CR>
+nnoremap <C-B> :Buffers<CR>
 
 " Jump backward / jumb forward
 nnoremap <A-Left> <C-o>
